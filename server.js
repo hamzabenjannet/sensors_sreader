@@ -4,6 +4,7 @@ var bodyParsser = require('body-parser');
 
 var index = require('./routes/index');
 var tasks = require('./routes/tasks');
+var sensors = require('./routes/sensors');
 
 var port = 3000;
 var app = express();
@@ -29,6 +30,7 @@ app.use(bodyParsser.urlencoded({extended:false}));
 
 app.use('/',index);
 app.use('/api',tasks);
+app.use('/api',sensors);
 
 
 

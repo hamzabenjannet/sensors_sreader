@@ -3,7 +3,7 @@ var router = express.Router();
 
 var mongojs = require('mongojs');
 //var db = mongojs('mongodb://admin:imaxeam001@54.186.188.145:27017/admin',['sensors']);
-var db = mongojs('mongodb://nodeuser:nodeuser@54.186.188.145:27017/nodedb?replicaSet=rs');
+var db = mongojs('mongodb://nodeuser:nodeuser@localhost:27017/nodedb?replicaSet=rs');
 
 // get all
 router.get('/sensors', function (req,res,next) {

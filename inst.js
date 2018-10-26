@@ -50,7 +50,7 @@ const app = express();
 
 
 //mongodb://nodeuser:nodeuser@54.186.188.145:27017/nodedb?replicaSet=rs
-mongoose.connect('mongodb://nodeuser:nodeuser@54.186.188.145:27017/nodedb?replicaSet=rs',{ "useNewUrlParser": true });
+mongoose.connect('mongodb://nodeuser:nodeuser@localhost:27017/nodedb?replicaSet=rs',{ "useNewUrlParser": true });
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'Connection Error:'));

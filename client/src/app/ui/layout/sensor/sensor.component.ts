@@ -9,14 +9,12 @@ import { SensorsComponent } from '../sensors/sensors.component';
 export class SensorComponent implements OnInit {
 
   sensor_details = null;
- 
 
-  constructor(private Sensors_Component:SensorsComponent ) { }
+  constructor(private Sensors_Component: SensorsComponent ) { }
 
   ngOnInit() {
-    this.sensor_details = this.Sensors_Component.selected_sensor
+    this.sensor_details = this.Sensors_Component.selected_sensor;
     console.log(this.sensor_details);
-    
   }
 
 }

@@ -55,9 +55,10 @@ const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'Connection Error:'));
 
+var p_change =null;
 db.once('open', () => {
-  app.listen(9000, () => {
-    console.log('Node server running on port 9000');
+  app.listen(3000, () => {
+    console.log('Node server running on port 3000');
   });
 
   const taskCollection = db.collection('sensors');
@@ -65,6 +66,7 @@ db.once('open', () => {
 
   changeStream.on('change', (change) => {
     console.log(change);
+    p_change =change;
   });
 
 
@@ -82,5 +84,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use('/api', api);
 
+app.get('/', function (req,res,next) {
 
+
+  // res.send('snode api');
+  res.json(p_change);
+  // db.sensors.find( function (err,sensors) {
+  //   if(err){
+  //     res.send(err);
+  //   }else{
+  //     res.json(sensors);
+  //   }
+  // } )
+});
 

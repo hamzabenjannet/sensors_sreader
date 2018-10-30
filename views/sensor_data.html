@@ -1,0 +1,16 @@
+sensor data
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var socket = io.connect('http://54.186.188.145:3000/s/e5b6f00b2bd6b2bb')
+		socket.on("data", (data) => {
+			console.log(data);
+		})
+		// setInterval( function(){
+		// 	socket.emit('data', "e5b6f00b2bd6b2bb",{"d":{"temp":23} } );
+		// 	console.log("sent");
+		// }, 3000);
+	});
+</script>

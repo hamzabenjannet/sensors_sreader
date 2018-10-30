@@ -5,12 +5,13 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
 import { SensorsComponent } from './layout/sensors/sensors.component';
+import { SensorComponent } from './layout/sensor/sensor.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
-  declarations: [LayoutComponent, HeaderComponent, FooterComponent, SensorsComponent],
+  declarations: [LayoutComponent, HeaderComponent, FooterComponent, SensorsComponent, SensorComponent],
   exports: [LayoutComponent]
 })
 export class UiModule { }

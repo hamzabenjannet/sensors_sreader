@@ -1,7 +1,7 @@
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<!-- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 	<form action="" method="POST" role="form">
 		<legend>Add sensor</legend>
-{{sensor.title}}
+
 		<div class="form-group">
 			<label for="">Title</label>
 			<input type="text" class="form-control" id="sensor_title" placeholder="sensor title">
@@ -17,7 +17,13 @@
 
 		<button type="submit" class="btn btn-success">Add</button>
 	</form>
-</div>
+</div> -->
 
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<ul *ngFor="let sensor of sensors_list" >
+		<li (click)="get_sensor_details(sensor)" >{{sensor.device_id}}</li>
+	</ul>
 </div>
+<button (click)="selected_sensor=null" class="btn btn-danger" > <i class="fa fa-times"></i> </button>
+<br>
+<app-sensor *ngIf="selected_sensor" ></app-sensor>

@@ -9,11 +9,11 @@ import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class SensorsService {
-	constructor(private http: HttpClient){
+	constructor(private http: HttpClient) {
 		console.log('init SensorsService');
 	}
 	getSensors(){
-		return this.http.get('http://localhost:3000/api/sensors');
+		return this.http.get('http://54.186.188.145:3000/api/sensors');
 	}
 	
 

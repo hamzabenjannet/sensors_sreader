@@ -9,9 +9,8 @@ import { SensorsService } from '../../../services/sensors.service';
 })
 export class SensorsComponent implements OnInit {
 
-
-	sensor ={_id:null,title:null,isDone:null}
-
+	selected_sensor = null;
+	sensors_list = null;
 
 	constructor(private Sensors_Service:SensorsService ) {
 
@@ -19,22 +18,36 @@ export class SensorsComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		var init_sensor = this.sensor;
+
 		var dumy_tymer = 0;
 
 		this.Sensors_Service.getSensors().subscribe(sensors => {
 			console.log(sensors)
-			this.sensor = sensors[0];
-			init_sensor = this.sensor;
+			// this.sensor = sensors[0];
+			// init_sensor = this.sensor;
+			this.sensors_list = sensors;
 		} )
 
 		
-		setInterval( function(){
+		// setInterval( function(){
 
-			init_sensor.title = dumy_tymer;
-			dumy_tymer++;
-		} , 5000)
+			// 	init_sensor.title = dumy_tymer;
+			// 	dumy_tymer++;
+			// } , 5000)
+
+		}
+
+
+		get_sensor_details(sensor){
+			// console.log(sensor);
+			this.selected_sensor = sensor;
+		}
 
 	}
 
-}
+
+
+
+
+
+

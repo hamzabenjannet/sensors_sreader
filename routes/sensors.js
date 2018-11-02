@@ -6,10 +6,10 @@ var mongoose = require('mongoose');
 
 
 //var db = mongojs('mongodb://admin:imaxeam001@54.186.188.145:27017/admin',['sensors']);
-var db = mongojs('mongodb://nodeuser:nodeuser@localhost:27017/nodedb?replicaSet=rs');
+var db = mongojs('mongodb://admin:admin@localhost:27017/dashboard?replicaSet=rs');
 
 
-mongoose.connect('mongodb://nodeuser:nodeuser@localhost:27017/nodedb?replicaSet=rs',{ "useNewUrlParser": true });
+mongoose.connect('mongodb://admin:admin@localhost:27017/dashboard?replicaSet=rs',{ "useNewUrlParser": true });
 const watch_db = mongoose.connection;
 
 watch_db.on('error', console.error.bind(console, 'Connection Error:'));
@@ -20,7 +20,7 @@ watch_db.once('open', () => {
   // });
   console.log('connected db');
 
-  const sensorsCollection = watch_db.collection('sensors');
+  const sensorsCollection = watch_db.collection('devices');
   const changeStream = sensorsCollection.watch();
 
   changeStream.on('change', (change) => {
@@ -49,7 +49,7 @@ router.get('/sensors', function (req,res,next) {
 
 	//res.send('sensors api');
 	
-	db.sensors.find( function (err,sensors) {
+	db.devices.find( function (err,sensors) {
 		if(err){
 			res.send(err);
 		}else{
@@ -63,7 +63,7 @@ router.get('/sensors', function (req,res,next) {
 // get single by insert ID
 router.get('/sensors/:id', function (req,res,next) {
 	//res.send('sensor api');
-	db.sensors.findOne({_id: mongojs.ObjectId(req.params.id)}, function (err,sensor) {
+	db.devices.findOne({_id: mongojs.ObjectId(req.params.id)}, function (err,sensor) {
 		if(err){
 			res.send(err);
 		}else{
@@ -81,7 +81,7 @@ router.get('/sensors/device/ws/:id', function (req,res,next) {
 
 	// console.log(req.params.id);
 
-	db.sensors.find({device_id: req.params.id } , function (err,sensor) {
+	db.devices.find({device_id: req.params.id } , function (err,sensor) {
 		if(err){
 			res.send(err);
 		}else{
@@ -128,7 +128,7 @@ router.get('/sensors/device/ws/:id', function (req,res,next) {
 
 	// res.render('sensor_data.html');
 
-	// db.sensors.find({device_id: req.params.id } , function (err,sensor) {
+	// db.devices.find({device_id: req.params.id } , function (err,sensor) {
 	// 	if(err){
 	// 		res.send(err);
 	// 	}else{
@@ -138,7 +138,7 @@ router.get('/sensors/device/ws/:id', function (req,res,next) {
 
 
 
-	// db.sensors.findOne({device_id: mongojs.ObjectId(req.params.id)}, function (err,sensor) {
+	// db.devices.findOne({device_id: mongojs.ObjectId(req.params.id)}, function (err,sensor) {
 	// 	if(err){
 	// 		res.send(err);
 	// 	}else{
@@ -149,7 +149,7 @@ router.get('/sensors/device/ws/:id', function (req,res,next) {
 
 // get single by device ID 
 router.get('/sensors/device/:id', function (req,res,next) {
-	db.sensors.find({device_id: req.params.id } , function (err,sensor) {
+	db.devices.find({device_id: req.params.id } , function (err,sensor) {
 		if(err){
 			res.send(err);
 		}else{
@@ -173,7 +173,7 @@ router.post('/sensors', function (req,res,next) {
 			"error":"bad data"
 		})
 	}else{
-		db.sensors.save(sensor, function (err, sensor) {
+		db.devices.save(sensor, function (err, sensor) {
 			if(err){
 				res.send(err);
 			}else{
@@ -186,7 +186,7 @@ router.post('/sensors', function (req,res,next) {
 // delete
 router.delete('/sensors/:id', function (req,res,next) {
 	//res.send('sensor api');
-	db.sensors.remove({_id: mongojs.ObjectId(req.params.id)}, function (err,sensor) {
+	db.devices.remove({_id: mongojs.ObjectId(req.params.id)}, function (err,sensor) {
 		if(err){
 			res.send(err);
 		}else{
@@ -200,7 +200,7 @@ router.put('/sensors/:id', function (req,res,next) {
 	var sensor_id = req.params.id;
 	var sensor_data = req.body;
 
-	db.sensors.findAndModify({
+	db.devices.findAndModify({
 		query: { _id: sensor_id },
 		update: { $set: { d: sensor_data.d } },
 		new: true
@@ -217,7 +217,7 @@ router.put('/sensors/device/:id', function (req,res,next) {
 	var sensor_id = req.params.id;
 	var sensor_data = req.body;
 
-	db.sensors.findAndModify({
+	db.devices.findAndModify({
 		query: { device_id: sensor_id },
 		update: { $set: { d: sensor_data.d } },
 		new: true

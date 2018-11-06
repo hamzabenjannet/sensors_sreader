@@ -72,7 +72,7 @@ router.get('/sensors/:id', function (req,res,next) {
 	} )
 });
 
-	var gsocket = {};
+var gsocket = {};
 
 // get single by device ID and emit on socketIO
 router.get('/sensors/device/ws/:id', function (req,res,next) {
@@ -164,23 +164,34 @@ router.get('/sensors/device/:id', function (req,res,next) {
 });
 
 
-// save
+// create 
 router.post('/sensors', function (req,res,next) {
-	var sensor = req.body;
-	if (!sensor.title || (sensor.isDone+'') ) {
-		res.status(400);
-		res.json({
-			"error":"bad data"
-		})
-	}else{
-		db.devices.save(sensor, function (err, sensor) {
-			if(err){
-				res.send(err);
-			}else{
-				res.json(sensor);
-			}
-		})
+	var device = req.body;
+	
+	device = {
+		device_id: device.device_id
 	}
+	db.devices.save(device, function (err, sensor) {
+		if(err){
+			res.send(err);
+		}else{
+			res.json(sensor);
+		}
+	})
+	// if (!sensor.title || (sensor.isDone+'') ) {
+	// 	res.status(400);
+	// 	res.json({
+	// 		"error":"bad data"
+	// 	})
+	// }else{
+	// 	db.devices.save(sensor, function (err, sensor) {
+	// 		if(err){
+	// 			res.send(err);
+	// 		}else{
+	// 			res.json(sensor);
+	// 		}
+	// 	})
+	// }
 })
 
 // delete

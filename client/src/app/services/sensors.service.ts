@@ -7,7 +7,7 @@ export class SensorsService {
   console.log('init SensorsService');
  }
  getSensors() {
-  return this.http.get('http://54.186.188.145:3000/api/sensors');
+  return this.http.get('http://54.186.188.145:3000/api/devices');
  }
 
 }

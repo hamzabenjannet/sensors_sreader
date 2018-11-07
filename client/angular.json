@@ -23,9 +23,29 @@
               "src/assets"
             ],
             "styles": [
+               "src/assets/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/font-awesome/css/font-awesome.min.css",
+              "src/assets/Ionicons/css/ionicons.min.css",
+              "src/assets/jvectormap/jquery-jvectormap.css",
+              "src/assets/css/AdminLTE.min.css",
+              "src/assets/css/skins/_all-skins.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/jquery/dist/jquery.min.js",
+              "src/assets/bootstrap/dist/js/bootstrap.min.js",
+              "src/assets/fastclick/lib/fastclick.js",
+              "src/assets/js/adminlte.min.js",
+              "src/assets/jquery-sparkline/dist/jquery.sparkline.min.js",
+              "src/assets/jvectormap/jquery-jvectormap-1.2.2.min.js",
+              "src/assets/jvectormap/jquery-jvectormap-world-mill-en.js",
+              "src/assets/jquery-slimscroll/jquery.slimscroll.min.js",
+
+              "src/assets/justgage-1.2.2/raphael-2.1.4.min.js",
+              "src/assets/justgage-1.2.2/justgage.js",
+              
+              
+            ]
           },
           "configurations": {
             "production": {
